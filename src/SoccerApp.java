@@ -69,6 +69,8 @@ public class SoccerApp {
 
                 option = sc.nextInt();
                 sc.nextLine(); // Clear the buffer
+                System.out.println("Press Enter to confirm");
+                sc.nextLine(); // Clear the buffer
 
                 System.out.println("OPTION: " + option);
 
@@ -109,6 +111,8 @@ public class SoccerApp {
                 System.out.print("\nChoice : ");
                 option = sc.nextInt();
                 sc.nextLine(); // Clear the buffer
+                System.out.println("Press Enter to confirm");
+                sc.nextLine(); // Clear the buffer
 
 
                 switch (option) {
@@ -128,7 +132,6 @@ public class SoccerApp {
             int id = sc.nextInt();
             System.out.print("Enter player's overall rating (max 100): ");
             int overallRating = sc.nextInt();
-            sc.nextLine();      // Clear the buffer
             try {
 
                 PreparedStatement stmt = con.prepareStatement("UPDATE player_attributes " +
@@ -161,6 +164,8 @@ public class SoccerApp {
 
                 System.out.print("\nChoice : ");
                 option = sc.nextInt();
+                sc.nextLine(); // Clear the buffer
+                System.out.println("Press Enter to confirm");
                 sc.nextLine(); // Clear the buffer
 
                 switch (option) {
@@ -202,6 +207,8 @@ public class SoccerApp {
                 System.out.print("\nChoice : ");
 
                 option = sc.nextInt();
+                sc.nextLine(); // Clear the buffer
+                System.out.println("Press Enter to confirm");
                 sc.nextLine(); // Clear the buffer
 
                 switch (option) {
@@ -261,6 +268,8 @@ public class SoccerApp {
 
                 option = sc.nextInt();
                 sc.nextLine(); // Clear the buffer
+                System.out.println("Press Enter to confirm");
+                sc.nextLine(); // Clear the buffer
 
                 switch (option) {
 
@@ -281,7 +290,6 @@ public class SoccerApp {
         static void findPlayerDetailsByName() {
 
             System.out.print("Enter name: ");
-            sc.nextLine();
             String name = sc.nextLine();
 
             try {
@@ -344,6 +352,8 @@ public class SoccerApp {
                 System.out.print("\nChoice : ");
 
                 option = sc.nextInt();
+                sc.nextLine(); // Clear the buffer
+                System.out.println("Press Enter to confirm");
                 sc.nextLine(); // Clear the buffer
 
                 switch (option) {
@@ -412,6 +422,8 @@ public class SoccerApp {
                 System.out.print("\nChoice : ");
 
                 option = sc.nextInt();
+                sc.nextLine(); // Clear the buffer
+                System.out.println("Press Enter to confirm");
                 sc.nextLine(); // Clear the buffer
 
                 switch (option) {

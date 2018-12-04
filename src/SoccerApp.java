@@ -60,7 +60,7 @@ public class SoccerApp {
                 System.out.println("1. FIND");
                 System.out.println("2. INSERT");
                 System.out.println("3. UPDATE");
-                System.out.println("4. JOIN");
+                System.out.println("4. DELETE");
                 System.out.println("5. AGGREGATE");
                 System.out.println("6. Exit");
                 System.out.println("-----------------------------------------------------");
@@ -68,6 +68,9 @@ public class SoccerApp {
                 System.out.print("\nChoice : ");
 
                 option = sc.nextInt();
+                sc.nextLine(); // Clear the buffer
+
+                System.out.println("OPTION: " + option);
 
                 switch (option) {
                     case 1:
@@ -77,17 +80,65 @@ public class SoccerApp {
                         InsertMenu.displayMenu();
                         break;
                     case 3:
-                        // TODO: Update Menu
+                        UpdateMenu.displayMenu();
                         break;
                     case 4:
-                        // TODO: Join Menu
-                        break;
-                    case 5:
                         // TODO: Aggregate Menu
                         break;
                     default:
                         break;
                 }
+            }
+        }
+    }
+
+    static class UpdateMenu {
+        static Scanner sc = new Scanner(System.in);
+        static int option = -1;
+
+        static void displayMenu() {
+            while (option != 2) {
+
+                System.out.println();
+                System.out.println("-----------------------------------------------------");
+                System.out.println("                    UPDATE MENU");
+                System.out.println("-----------------------------------------------------");
+                System.out.println("1. Update player overall rating");
+                System.out.println("2. Back");
+
+                System.out.print("\nChoice : ");
+                option = sc.nextInt();
+                sc.nextLine(); // Clear the buffer
+
+
+                switch (option) {
+
+                    case 1:
+                        updateOverallRating();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+
+        static void updateOverallRating() {
+            System.out.print("Enter player ID: ");
+            int id = sc.nextInt();
+            System.out.print("Enter player's overall rating (max 100): ");
+            int overallRating = sc.nextInt();
+            sc.nextLine();      // Clear the buffer
+            try {
+
+                PreparedStatement stmt = con.prepareStatement("UPDATE player_attributes " +
+                        "SET overall_rating = ? WHERE id = ?");
+                stmt.setInt(1, overallRating);
+                stmt.setInt(2, id);
+
+                stmt.executeUpdate();
+            } catch (Exception e) {
+                System.out.println(e);
             }
         }
     }
@@ -110,6 +161,7 @@ public class SoccerApp {
 
                 System.out.print("\nChoice : ");
                 option = sc.nextInt();
+                sc.nextLine(); // Clear the buffer
 
                 switch (option) {
 
@@ -150,6 +202,7 @@ public class SoccerApp {
                 System.out.print("\nChoice : ");
 
                 option = sc.nextInt();
+                sc.nextLine(); // Clear the buffer
 
                 switch (option) {
 
@@ -207,6 +260,7 @@ public class SoccerApp {
                 System.out.print("\nChoice : ");
 
                 option = sc.nextInt();
+                sc.nextLine(); // Clear the buffer
 
                 switch (option) {
 
@@ -290,6 +344,7 @@ public class SoccerApp {
                 System.out.print("\nChoice : ");
 
                 option = sc.nextInt();
+                sc.nextLine(); // Clear the buffer
 
                 switch (option) {
 
@@ -343,7 +398,7 @@ public class SoccerApp {
         static int option = -1;
 
         static void displayMenu() {
-            while (option != 7) {
+            while (option != 3) {
 
                 System.out.println();
                 System.out.println("-----------------------------------------------------");
@@ -352,15 +407,12 @@ public class SoccerApp {
                 System.out.println("Select the table to insert into:");
                 System.out.println("1. PLAYER");
                 System.out.println("2. PLAYER_ATTRIBUTES");
-                System.out.println("3. COUNTRY");
-                System.out.println("4. LEAGUE");
-                System.out.println("5. TEAM");
-                System.out.println("6. SOCCER_MATCH");
-                System.out.println("7. Back");
+                System.out.println("3. Back");
 
                 System.out.print("\nChoice : ");
 
                 option = sc.nextInt();
+                sc.nextLine(); // Clear the buffer
 
                 switch (option) {
 
@@ -369,18 +421,6 @@ public class SoccerApp {
                         break;
                     case 2:
                         insertIntoPlayer_Attributes();
-                        break;
-                    case 3:
-//                        insertIntoCountry();
-                        break;
-                    case 4:
-//                        insertIntoLeague();
-                        break;
-                    case 5:
-//                        insertIntoTeam();
-                        break;
-                    case 6:
-//                        insertIntoSoccer_Match();
                         break;
                     default:
                         break;
@@ -429,7 +469,7 @@ public class SoccerApp {
             System.out.print("Enter the player ID: ");
             int id = sc.nextInt();
             sc.nextLine();      // Clear the buffer
-            System.out.print("Enter the player name: ");2
+            System.out.print("Enter the player name: ");
             String name = sc.nextLine();
             System.out.print("Enter the player's birthday: (yyyy-mm-dd HH:MM:SS): ");
             String birthday =  sc.nextLine();
@@ -437,7 +477,7 @@ public class SoccerApp {
             float height = sc.nextFloat();
             System.out.print("Enter the player's weight: ");
             float weight = sc.nextFloat();
-
+            sc.nextLine();      // Clear the buffer
             try {
 
                 PreparedStatement stmt = con.prepareStatement("INSERT INTO player " +
@@ -458,4 +498,6 @@ public class SoccerApp {
     }
 
 }
+
+
 

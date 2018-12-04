@@ -74,7 +74,7 @@ public class SoccerApp {
                         RetrievalMenu.displayMenu();
                         break;
                     case 2:
-                        // TODO: Insert Menu
+                        InsertMenu.displayMenu();
                         break;
                     case 3:
                         // TODO: Update Menu
@@ -117,7 +117,7 @@ public class SoccerApp {
                         RetrieveAllMenu.displayMenu();
                         break;
                     case 2:
-                        ConditionalRetrievallMenu.displayMenu();
+                        ConditionalRetrievalMenu.displayMenu();
                         break;
                     default:
                         break;
@@ -136,7 +136,7 @@ public class SoccerApp {
 
                 System.out.println();
                 System.out.println("-----------------------------------------------------");
-                System.out.println("                    RETRIEVAL MENU");
+                System.out.println("                  RETRIEVAL ALL MENU");
                 System.out.println("-----------------------------------------------------");
                 System.out.println("Select the table to retrieve all records from:");
                 System.out.println("1. PLAYER");
@@ -188,12 +188,12 @@ public class SoccerApp {
         }
     }
 
-    static class ConditionalRetrievallMenu {
+    static class ConditionalRetrievalMenu {
         static Scanner sc = new Scanner(System.in);
         static int option = -1;
 
         static void displayMenu() {
-            while (option != 3) {
+            while (option != 4) {
 
                 System.out.println();
                 System.out.println("-----------------------------------------------------");
@@ -201,7 +201,8 @@ public class SoccerApp {
                 System.out.println("-----------------------------------------------------");
                 System.out.println("1. Get player details by name");
                 System.out.println("2. Find players above a given rating");
-                System.out.println("3. Back");
+                System.out.println("3. Find by ID");
+                System.out.println("4. Back");
 
                 System.out.print("\nChoice : ");
 
@@ -215,6 +216,8 @@ public class SoccerApp {
                     case 2:
                         findPlayersByRating();
                         break;
+                    case 3:
+                        FindByIdMenu.displayMenu();
                     default:
                         break;
                 }
@@ -257,6 +260,158 @@ public class SoccerApp {
                 ResultSet rs = stmt.executeQuery();
 
                 printResultSet(rs);
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+
+    }
+
+    static class FindByIdMenu {
+        static Scanner sc = new Scanner(System.in);
+        static int option = -1;
+
+        static void displayMenu() {
+            while (option != 7) {
+
+                System.out.println();
+                System.out.println("-----------------------------------------------------");
+                System.out.println("              FIND BY ID MENU");
+                System.out.println("-----------------------------------------------------");
+                System.out.println("1. Find Player by ID");
+                System.out.println("2. Find Player Attributes by ID");
+                System.out.println("3. Find Country by ID");
+                System.out.println("4. Find League by ID");
+                System.out.println("5. Find Team by ID");
+                System.out.println("6. Find Soccer Match by ID");
+                System.out.println("7. Back");
+
+                System.out.print("\nChoice : ");
+
+                option = sc.nextInt();
+
+                switch (option) {
+
+                    case 1:
+                        findById("player");
+                        break;
+                    case 2:
+                        findById("player_attributes");
+                        break;
+                    case 3:
+                        findById("country");
+                        break;
+                    case 4:
+                        findById("league");
+                        break;
+                    case 5:
+                        findById("team");
+                        break;
+                    case 6:
+                        findById("soccer_match");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+
+        static void findById(String tableName) {
+            System.out.print("Enter the ID: ");
+            int id = sc.nextInt();
+
+            try {
+
+                PreparedStatement stmt = con.prepareStatement("SELECT * FROM " + tableName
+                        + " WHERE id = ?");
+                stmt.setInt(1, id);
+
+                ResultSet rs = stmt.executeQuery();
+
+                printResultSet(rs);
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    static class InsertMenu {
+        static Scanner sc = new Scanner(System.in);
+        static int option = -1;
+
+        static void displayMenu() {
+            while (option != 7) {
+
+                System.out.println();
+                System.out.println("-----------------------------------------------------");
+                System.out.println("                   INSERT MENU");
+                System.out.println("-----------------------------------------------------");
+                System.out.println("Select the table to insert into:");
+                System.out.println("1. PLAYER");
+                System.out.println("2. PLAYER_ATTRIBUTES");
+                System.out.println("3. COUNTRY");
+                System.out.println("4. LEAGUE");
+                System.out.println("5. TEAM");
+                System.out.println("6. SOCCER_MATCH");
+                System.out.println("7. Back");
+
+                System.out.print("\nChoice : ");
+
+                option = sc.nextInt();
+
+                switch (option) {
+
+                    case 1:
+                        insertIntoPlayer();
+                        break;
+                    case 2:
+//                        insertIntoPlayer_Attributes();
+                        break;
+                    case 3:
+//                        insertIntoCountry();
+                        break;
+                    case 4:
+//                        insertIntoLeague();
+                        break;
+                    case 5:
+//                        insertIntoTeam();
+                        break;
+                    case 6:
+//                        insertIntoSoccer_Match();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        static void insertIntoPlayer() {
+            System.out.print("Enter the player ID: ");
+            int id = sc.nextInt();
+            sc.nextLine();      // Clear the buffer
+            System.out.print("Enter the player name: ");
+            String name = sc.nextLine();
+            System.out.print("Enter the player's birthday: (yyyy-mm-dd HH:MM:SS): ");
+            String birthday =  sc.nextLine();
+            System.out.print("Enter the player's height: ");
+            float height = sc.nextFloat();
+            System.out.print("Enter the player's weight: ");
+            float weight = sc.nextFloat();
+
+            try {
+
+                PreparedStatement stmt = con.prepareStatement("INSERT INTO player " +
+                        "VALUES (?, ?, ?, ?, ?)");
+                stmt.setInt(1, id);
+                stmt.setString(2, name);
+                stmt.setString(3, birthday);
+                stmt.setFloat(4, height);
+                stmt.setFloat(5, weight);
+
+                stmt.executeUpdate();
 
             } catch (Exception e) {
                 System.out.println(e);

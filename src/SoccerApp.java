@@ -71,15 +71,11 @@ class DatabaseManagerMenu {
 
             System.out.print("\nChoice : ");
             option = sc.nextInt();
-            System.out.println("OPTION: " + option);
-            sc.nextLine(); // Clear the buffer
             System.out.println("Press Enter to confirm");
             sc.nextLine(); // Clear the buffer
 
-            System.out.println("OPTION: " + option);
 
             if (option == 1) {
-                System.out.println("Retrieve IF");
                 new RetrievalMenu(con).displayMenu();
             } else if (option == 2) {
                 new InsertMenu(con).displayMenu();
@@ -121,7 +117,6 @@ class UpdateMenu {
 
             System.out.print("\nChoice : ");
             option = sc.nextInt();
-            sc.nextLine(); // Clear the buffer
             System.out.println("Press Enter to confirm");
             sc.nextLine(); // Clear the buffer
 
@@ -181,7 +176,6 @@ class RetrievalMenu {
 
             System.out.print("\nChoice : ");
             option = sc.nextInt();
-            sc.nextLine(); // Clear the buffer
             System.out.println("Press Enter to confirm");
             sc.nextLine(); // Clear the buffer
 
@@ -229,7 +223,6 @@ class RetrieveAllMenu {
             System.out.print("\nChoice : ");
 
             option = sc.nextInt();
-            sc.nextLine(); // Clear the buffer
             System.out.println("Press Enter to confirm");
             sc.nextLine(); // Clear the buffer
 
@@ -295,7 +288,6 @@ class ConditionalRetrievalMenu {
             System.out.print("\nChoice : ");
 
             option = sc.nextInt();
-            sc.nextLine(); // Clear the buffer
             System.out.println("Press Enter to confirm");
             sc.nextLine(); // Clear the buffer
 
@@ -386,7 +378,6 @@ class FindByIdMenu {
             System.out.print("\nChoice : ");
 
             option = sc.nextInt();
-            sc.nextLine(); // Clear the buffer
             System.out.println("Press Enter to confirm");
             sc.nextLine(); // Clear the buffer
 
@@ -462,7 +453,6 @@ class InsertMenu {
             System.out.print("\nChoice : ");
 
             option = sc.nextInt();
-            sc.nextLine(); // Clear the buffer
             System.out.println("Press Enter to confirm");
             sc.nextLine(); // Clear the buffer
 

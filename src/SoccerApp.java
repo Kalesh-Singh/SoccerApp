@@ -368,7 +368,7 @@ public class SoccerApp {
                         insertIntoPlayer();
                         break;
                     case 2:
-//                        insertIntoPlayer_Attributes();
+                        insertIntoPlayer_Attributes();
                         break;
                     case 3:
 //                        insertIntoCountry();
@@ -388,11 +388,48 @@ public class SoccerApp {
             }
         }
 
+        private static void insertIntoPlayer_Attributes() {
+            System.out.print("Enter the player ID: ");
+            int id = sc.nextInt();
+            sc.nextLine();      // Clear the buffer
+            System.out.print("Enter the date of assessment (yyyy-mm-dd HH:MM:SS): ");
+            String date = sc.nextLine();
+            System.out.print("Enter the player's overall rating (max 100): ");
+            int overallRating =  sc.nextInt();
+            System.out.print("Enter the player's potential (max 100): ");
+            int potential =  sc.nextInt();
+            sc.nextLine();      // Clear the buffer
+            System.out.print("Enter the player's preferred foot (left or right): ");
+            String preferredFoot = sc.nextLine();
+            System.out.print("Enter the player's attacking work rate (max 100): ");
+            int attackingWorkrate = sc.nextInt();
+            System.out.print("Enter the player's defensive work rate (max 100): ");
+            int defensiveWorkrate = sc.nextInt();
+
+            try {
+
+                PreparedStatement stmt = con.prepareStatement("INSERT INTO player_attributes " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?)");
+                stmt.setInt(1, id);
+                stmt.setString(2, date);
+                stmt.setInt(3, overallRating);
+                stmt.setInt(4, potential);
+                stmt.setString(5, preferredFoot);
+                stmt.setInt(6, attackingWorkrate);
+                stmt.setInt(7, defensiveWorkrate);
+
+                stmt.executeUpdate();
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+
         static void insertIntoPlayer() {
             System.out.print("Enter the player ID: ");
             int id = sc.nextInt();
             sc.nextLine();      // Clear the buffer
-            System.out.print("Enter the player name: ");
+            System.out.print("Enter the player name: ");2
             String name = sc.nextLine();
             System.out.print("Enter the player's birthday: (yyyy-mm-dd HH:MM:SS): ");
             String birthday =  sc.nextLine();

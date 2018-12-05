@@ -74,27 +74,85 @@ class DatabaseManagerMenu {
             System.out.println("Press Enter to confirm");
             sc.nextLine(); // Clear the buffer
 
-
-            if (option == 1) {
-                new RetrievalMenu(con).displayMenu();
-            } else if (option == 2) {
-                new InsertMenu(con).displayMenu();
-            } else if (option == 3) {
-
-                new UpdateMenu(con).displayMenu();
-            } else if (option == 4) {
-                System.out.println("Delete");
-            } else if (option == 5) {
-                System.out.println("Aggregate");
-            } else {
-                option = -1;
-                sc.nextLine();
-                sc.nextLine();
-                break;
+            switch (option) {
+                case 1:
+                    new RetrievalMenu(con).displayMenu();
+                    break;
+                case 2:
+                    new InsertMenu(con).displayMenu();
+                    break;
+                case 3:
+                    new UpdateMenu(con).displayMenu();
+                    break;
+                case 4:
+                    new DeleteMenu(con).displayMenu();
+                    break;
+                case 5:
+                    System.out.println("TODO: Aggregate");
+                    break;
+                default:
+                    sc.nextLine();
+                    break;
             }
         }
     }
 }
+
+class DeleteMenu {
+    private Scanner sc = new Scanner(System.in);
+    private int option = -1;
+    private Connection con;
+
+    DeleteMenu(Connection con) {
+        this.con = con;
+    }
+
+    void displayMenu() {
+        while (option != 2) {
+
+            System.out.println();
+            System.out.println("-----------------------------------------------------");
+            System.out.println("                    DELETE MENU");
+            System.out.println("-----------------------------------------------------");
+            System.out.println("1. Delete player by ID");
+            System.out.println("2. Back");
+
+            System.out.print("\nChoice : ");
+            option = sc.nextInt();
+            System.out.println("Press Enter to confirm");
+            sc.nextLine(); // Clear the buffer
+
+
+            switch (option) {
+                case 1:
+                    deletePlayerById();
+                    break;
+                default:
+                    sc.nextLine();
+                    break;
+            }
+        }
+    }
+
+    private void deletePlayerById() {
+        System.out.print("Enter player ID: ");
+        int id = sc.nextInt();
+        try {
+            // Delete from the player_attributes table
+            PreparedStatement stmt = con.prepareStatement("DELETE FROM player_attributes WHERE id = ?");
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+            // Delete from the player table
+            stmt = con.prepareStatement("DELETE FROM player WHERE id = ?");
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
 
 class UpdateMenu {
     private Scanner sc = new Scanner(System.in);
@@ -133,7 +191,6 @@ class UpdateMenu {
         }
     }
 
-
     private void updateOverallRating() {
         System.out.print("Enter player ID: ");
         int id = sc.nextInt();
@@ -153,7 +210,6 @@ class UpdateMenu {
     }
 }
 
-
 class RetrievalMenu {
     private Scanner sc = new Scanner(System.in);
     private int option = -1;
@@ -165,7 +221,6 @@ class RetrievalMenu {
 
     void displayMenu() {
         while (option != 3) {
-
             System.out.println();
             System.out.println("-----------------------------------------------------");
             System.out.println("                    RETRIEVAL MENU");

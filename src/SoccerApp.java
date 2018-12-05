@@ -88,12 +88,63 @@ class DatabaseManagerMenu {
                     new DeleteMenu(con).displayMenu();
                     break;
                 case 5:
-                    System.out.println("TODO: Aggregate");
+                    new AggregateMenu(con).displayMenu();
                     break;
                 default:
                     sc.nextLine();
                     break;
             }
+        }
+    }
+}
+
+class AggregateMenu {
+    private Scanner sc = new Scanner(System.in);
+    private int option = -1;
+    private Connection con;
+
+    AggregateMenu(Connection con) {
+        this.con = con;
+    }
+
+    void displayMenu() {
+        while (option != 2) {
+
+            System.out.println();
+            System.out.println("-----------------------------------------------------");
+            System.out.println("                   AGGREGATION MENU");
+            System.out.println("-----------------------------------------------------");
+            System.out.println("1. Count number of matches by league");
+            System.out.println("2. Back");
+
+            System.out.print("\nChoice : ");
+            option = sc.nextInt();
+            System.out.println("Press Enter to confirm");
+            sc.nextLine(); // Clear the buffer
+
+
+            switch (option) {
+                case 1:
+                    countNumberOfMatchesByLeague();
+                    break;
+                default:
+                    sc.nextLine();
+                    break;
+            }
+        }
+    }
+
+    private void countNumberOfMatchesByLeague() {
+        try {
+            // Count the number of matches by league
+            PreparedStatement stmt = con.prepareStatement("SELECT league.name AS league_name, " +
+                    "COUNT(soccer_match.id) AS matches FROM league INNER JOIN soccer_match " +
+                    "ON league.id = soccer_match.league_id " +
+                    "GROUP BY soccer_match.league_id");
+            ResultSet rs = stmt.executeQuery();
+            SoccerApp.printResultSet(rs);
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 }
@@ -420,7 +471,7 @@ class FindByIdMenu {
 
             System.out.println();
             System.out.println("-----------------------------------------------------");
-            System.out.println("              FIND BY ID MENU");
+            System.out.println("                    FIND BY ID MENU");
             System.out.println("-----------------------------------------------------");
             System.out.println("1. Find Player by ID");
             System.out.println("2. Find Player Attributes by ID");
@@ -592,7 +643,6 @@ class InsertMenu {
             System.out.println(e);
         }
     }
-
 }
 
 

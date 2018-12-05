@@ -12,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SoccerApp.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SoccerApp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SoccerApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="136" column="49" selection-start-line="136" selection-start-column="49" selection-end-line="136" selection-end-column="49" />
+            <state relative-caret-position="936">
+              <caret line="149" column="1" lean-forward="true" selection-start-line="149" selection-start-column="1" selection-end-line="149" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -24,11 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Scanner.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-8-latest/Contents/Home/src.zip!/java/util/Scanner.java">
+      <file leaf-file-name="Soccer.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Soccer.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19170">
-              <caret line="1332" column="19" selection-start-line="1332" selection-start-column="19" selection-end-line="1332" selection-end-column="19" />
+            <state relative-caret-position="557">
+              <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
             </state>
           </provider>
         </entry>
@@ -53,6 +53,7 @@
       <find>static</find>
       <find>Press</find>
       <find>INNER JOIN</find>
+      <find>executeQuery</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -63,6 +64,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/SoccerApp.java" />
+        <option value="$PROJECT_DIR$/src/Soccer.sql" />
       </list>
     </option>
   </component>
@@ -185,12 +187,12 @@
       <workItem from="1543899587890" duration="3695000" />
       <workItem from="1543906900268" duration="289000" />
       <workItem from="1543947854803" duration="15272000" />
-      <workItem from="1543990889294" duration="3829000" />
+      <workItem from="1543990889294" duration="4140000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23832000" />
+    <option name="totallyTimeSpent" value="24143000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="838" height="1050" extended-state="0" />
@@ -207,10 +209,10 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3296593" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3296593" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.0071599046" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17064439" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -290,11 +292,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SoccerApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="136" column="49" selection-start-line="136" selection-start-column="49" selection-end-line="136" selection-end-column="49" />
+        <state relative-caret-position="936">
+          <caret line="149" column="1" lean-forward="true" selection-start-line="149" selection-start-column="1" selection-end-line="149" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Soccer.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
         </state>
       </provider>
     </entry>

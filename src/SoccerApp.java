@@ -545,7 +545,7 @@ class InsertMenu {
     }
 
     void displayMenu() {
-        while (option != 3) {
+        while (option != 7) {
 
             System.out.println();
             System.out.println("-----------------------------------------------------");
@@ -554,7 +554,11 @@ class InsertMenu {
             System.out.println("Select the table to insert into:");
             System.out.println("1. PLAYER");
             System.out.println("2. PLAYER_ATTRIBUTES");
-            System.out.println("3. Back");
+            System.out.println("3. COUNTRY");
+            System.out.println("4. LEAGUE");
+            System.out.println("5. TEAM");
+            System.out.println("6. SOCCER_MATCH");
+            System.out.println("7. Back");
 
             System.out.print("\nChoice : ");
 
@@ -570,12 +574,121 @@ class InsertMenu {
                 case 2:
                     insertIntoPlayer_Attributes();
                     break;
+                case 3:
+                    insertIntoCountry();
+                    break;
+                case 4:
+                    insertIntoLeague();
+                    break;
+                case 5:
+                    insertIntoTeam();
+                    break;
+                case 6:
+                    insertIntoSoccer_Match();
+                    break;
                 default:
                     sc.nextLine();
                     break;
             }
         }
     }
+
+    private void insertIntoSoccer_Match() {
+        System.out.print("Enter the country id: ");
+        int countryId = sc.nextInt();
+        System.out.print("Enter the league id: ");
+        int leagueId = sc.nextInt();
+        System.out.print("Enter the home team id: ");
+        int homeTeamId = sc.nextInt();
+        System.out.print("Enter the away team id: ");
+        int awayTeamId = sc.nextInt();
+        sc.nextLine();      // Clear the buffer
+        System.out.print("Enter the match date (yyyy-mm-dd hh:mm:ss): ");
+        String matchDate = sc.nextLine();
+        System.out.print("Enter home team goals: ");
+        int homeTeamGoal = sc.nextInt();
+        System.out.print("Enter away team goals: ");
+        int awayTeamGoal = sc.nextInt();
+        sc.nextLine();      // Clear the buffer
+        System.out.print("Enter the match season (yyyy/yyyy): ");
+        String matchSeason = sc.nextLine();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO soccer_match " +
+                    "(country_id, league_id, home_team_id, away_team_id, match_date, home_team_goal, away_team_goal, season) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            stmt.setInt(1, countryId);
+            stmt.setInt(2, leagueId);
+            stmt.setInt(3, homeTeamId);
+            stmt.setInt(4, awayTeamId);
+            stmt.setString(5, matchDate);
+            stmt.setInt(6, homeTeamGoal);
+            stmt.setInt(7, awayTeamGoal);
+            stmt.setString(8, matchSeason);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void insertIntoTeam() {
+        System.out.print("Enter the team id: ");
+        int id = sc.nextInt();
+        sc.nextLine();      // Clear the buffer
+        System.out.print("Enter the team long name: ");
+        String longName = sc.nextLine();
+        System.out.print("Enter the team short name: ");
+        String shortName = sc.nextLine();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO team VALUES (?, ?, ?)");
+            stmt.setInt(1, id);
+            stmt.setString(2, longName);
+            stmt.setString(3, shortName);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void insertIntoLeague() {
+        System.out.print("Enter the league id: ");
+        int leaugeId = sc.nextInt();
+        System.out.print("Enter the country id: ");
+        int countryId = sc.nextInt();
+        sc.nextLine();      // Clear the buffer
+        System.out.print("Enter the league name: ");
+        String name = sc.nextLine();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO league VALUES (?, ?, ?)");
+            stmt.setInt(1, leaugeId);
+            stmt.setInt(2, countryId);
+            stmt.setString(3, name);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void insertIntoCountry() {
+        System.out.print("Enter the country id: ");
+        int id = sc.nextInt();
+        sc.nextLine();      // Clear the buffer
+        System.out.print("Enter the country name: ");
+        String name = sc.nextLine();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO country VALUES (?, ?)");
+            stmt.setInt(1, id);
+            stmt.setString(2, name);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+
 
     private void insertIntoPlayer_Attributes() {
         System.out.print("Enter the player ID: ");
@@ -590,10 +703,10 @@ class InsertMenu {
         sc.nextLine();      // Clear the buffer
         System.out.print("Enter the player's preferred foot (left or right): ");
         String preferredFoot = sc.nextLine();
-        System.out.print("Enter the player's attacking work rate (max 100): ");
-        int attackingWorkrate = sc.nextInt();
-        System.out.print("Enter the player's defensive work rate (max 100): ");
-        int defensiveWorkrate = sc.nextInt();
+        System.out.print("Enter the player's attacking work rate (low, medium, high): ");
+        String attackingWorkrate = sc.nextLine();
+        System.out.print("Enter the player's defensive work rate (low, medium, high): ");
+        String defensiveWorkrate = sc.nextLine();
 
         try {
 
@@ -604,8 +717,8 @@ class InsertMenu {
             stmt.setInt(3, overallRating);
             stmt.setInt(4, potential);
             stmt.setString(5, preferredFoot);
-            stmt.setInt(6, attackingWorkrate);
-            stmt.setInt(7, defensiveWorkrate);
+            stmt.setString(6, attackingWorkrate);
+            stmt.setString(7, defensiveWorkrate);
 
             stmt.executeUpdate();
 
